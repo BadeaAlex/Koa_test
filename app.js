@@ -3,6 +3,7 @@ const KoaRouter = require('koa-router');
 const json = require('koa-json');
 const path = require('path');
 const render = require('koa-ejs');
+const bodyparser = require('koa-body-parser')
 
 const app = new Koa();
 const router = new KoaRouter();
@@ -12,14 +13,14 @@ const things = ['My Family', 'Programming', 'Music'];
 
 // JSON middleware
 app.use(json());
+app.use(bodyparser())
 
 render(app, {
   root: path.join(__dirname, 'views'),
   layout: 'layout',
   viewExt: 'html',
   cache: false,
-  debug: true,
-
+  debug: false,
 });
 
 
